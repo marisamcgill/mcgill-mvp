@@ -9,10 +9,14 @@ function App() {
   return (
     <>
       Which Robert De Niro Movie?
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/results">Results</Link>
-      </div>
+      <nav>
+        <div>
+        <Link to="/">Home</Link></div>
+        <div>
+        <Link to="/results">Results</Link></div>
+        <div>
+        <Link to="/movies">Movies</Link></div>
+      </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/results" element={<Results />} />
@@ -21,5 +25,5 @@ function App() {
     </>
   );
 }
-​
+
 export default App;
