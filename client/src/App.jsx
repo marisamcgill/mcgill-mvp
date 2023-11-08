@@ -30,7 +30,7 @@ export default function App() {
           <Link to="/">Movie Generator</Link>
         </div>
         <div>
-          <Link to="/movies">Movies</Link>
+          <Link to="/movies">All Movies</Link>
         </div>
       </nav>
       <Routes>
