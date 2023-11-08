@@ -1,29 +1,42 @@
-import { useState } from "react";
-import "./App.css";
+// App.js
+import React, { useEffect, useState } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import Results from "./pages/Results";
 import Movies from "./pages/Movies";
 
-function App() {
+export default function App() {
+  const [movies, setMovies] = useState([]);
+
+  const getMovies = () => {
+    fetch("/api/movies")
+      .then((response) => response.json())
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <>
       Which Robert De Niro Movie?
       <nav>
         <div>
-        <Link to="/">Home</Link></div>
+          <Link to="/">Movie Generator</Link>
+        </div>
         <div>
-        <Link to="/results">Results</Link></div>
-        <div>
-        <Link to="/movies">Movies</Link></div>
+          <Link to="/movies">Movies</Link>
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/results" element={<Results />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies" element={<Movies movies={movies} />} />
       </Routes>
     </>
   );
 }
-
-export default App;

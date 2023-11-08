@@ -7,7 +7,7 @@ export default function Movies() {
   useEffect(() => {
     getMovies();
   }, []);
-  
+
   async function getMovies() {
     const response = await fetch("/api/movies");
     const data = await response.json();

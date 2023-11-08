@@ -7,6 +7,7 @@ const cors = require('cors');
 
 const homeRouter = require('./routes/home');
 const resultsRouter = require('./routes/results');
+const moviesRouter = require('./routes/movies');
 
 const app = express();
 
@@ -17,8 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', homeRouter);
-app.use('/results', resultsRouter);
+app.use('/api/results', resultsRouter);
+app.use('/api/movies', moviesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -33,7 +34,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 module.exports = app;
