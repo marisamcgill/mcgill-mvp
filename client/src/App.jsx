@@ -5,23 +5,7 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 
 export default function App() {
-  const [movies, setMovies] = useState([]);
-
-  const getMovies = () => {
-    fetch("/api/movies")
-      .then((response) => response.json())
-      .then((movies) => {
-        setMovies(movies);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-
+ 
   return (
     <>
       Which Robert De Niro Movie?
@@ -35,7 +19,7 @@ export default function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies movies={movies} />} />
+        <Route path="/movies" element={<Movies />} />
       </Routes>
     </>
   );

@@ -15,10 +15,6 @@ export default function App() {
     getMovies();
   }, []);
 
-  async function getMovies() {
-    const response = await fetch("/api/movies");
-    const data = await response.json();
-    setMovies(data);
 
     async function getMovies() {
       try {
@@ -34,7 +30,6 @@ export default function App() {
     }
     
 
-  }
   return (
     <div>
       All Movies
@@ -42,7 +37,7 @@ export default function App() {
         {movies.map((m) => (
           <div key={m.id}>
             <Link to={`/movies/${m.id}`}>
-              {m.moviename} {m.moviedirector} {m.movieyear}
+              {m.MovieName} ({m.MovieDirector}, {m.MovieYear})
             </Link>
           </div>
         ))}

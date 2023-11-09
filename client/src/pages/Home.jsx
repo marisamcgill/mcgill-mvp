@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Home() {
-
+  const [genre, setGenre] = useState("");
+  const [time, setTime] = useState("");
+  const [year, setYear] = useState("");
 
   console.log("test");
 
@@ -11,76 +13,80 @@ function genreQuestion({ onGenreSelect }) {
   };
 
   const handleGenreSelect = (event) => {
-    // onGenreSelect(genre);
     event.preventDefault();
-    console.log(genres[event]);
-  
-}
 
-// const times = ['< 90 minutes', '< 120 minutes', '< 180 minutes', '< 240 minutes', '< 300 minutes'];
-// function timeQuestion({ onTimeSelect }) { 
+    const genre = event.target.value;
+    
+    setGenre(genre);
+    console.log(genre);
+  }
 
-//   const handleTimeSelect = (time) => {
-   // // onTimeSelect(time);
-// console.log(time);    
-//   };
+const times = ['Up to 90 minutes', 'Up to 120 minutes', 'Up to 180 minutes', 'Up to 240 minutes', 'Up to 300 minutes'];
+function timeQuestion({ onTimeSelect }) { 
 
-// }
-// const years = ['1970s', '1980s', '1990s', '2000s', '2010s']; 
-// function yearQuestion({ onYearSelect }) {
+};
 
-//   const handleYearSelect = (year) => {
-//     //onYearSelect(year);
-//    console.log(years);
-//   };
+  const handleTimeSelect = (event) => {
+   event.preventDefault();
+
+   const time = event.target.value;
+   
+  setTime(time);
+  console.log(time);    
+  };
+
+const years = ['1970s', '1980s', '1990s', '2000s', '2010s']; 
+function yearQuestion({ onYearSelect }) {
+
+};
+
+  const handleYearSelect = (event) => {
+    event.preventDefault();
+
+    const year = event.target.value;
+
+    setYear(year);
+   console.log(years);
+  };
 
   return (
-    // <div>
-    //   <div>
-    //   <h2>What are you in the mood for?</h2>
-    //   <ul>
-    //     {genres.map((genre) => (
-    //       <li key={genre} onClick={() => handleGenreSelect(genre)}>
-    //         {genre}
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
-
 <div>
+    <div>
+  <label className="col-4">
+      What are you in the mood for?
+      <select className="form-select form-select-md" name='genre' id="selected" onChange={(event) => handleGenreSelect(event)}>
+          {genres.map(genre => (
+              <option key={genre} value={genre}>{genre}</option>
+          ))}
+      </select>
+  </label>
+  </div> 
+
+            <div>
+  <label className="col-4">
+      How long have you got?
+      <select className="form-select form-select-md" name='time' id="selected" onChange={(event) => handleTimeSelect(event)}>
+          {times.map(time => (
+              <option key={time} value={time}>{time}</option>
+          ))}
+      </select>
+  </label>
+  </div> 
+
   <div>
-<label className="col-4">
-    What are you in the mood for?
-    <select className="form-select form-select-md" name='genre' id="selected" onChange={(event) => handleGenreSelect(event)}>
-        {genres.map(genre => (
-            <option key={genre} value={genre}>{genre}</option>
-        ))}
-    </select>
-</label>
-</div> 
+  <label className="col-4">
+      When was it released?
+      <select className="form-select form-select-md" name='year' id="selected" onChange={(event) => handleTimeSelect(event)}>
+          {years.map(year => (
+              <option key={year} value={year}>{year}</option>
+          ))}
+      </select>
+  </label>
+  </div> 
+
+  </div>
 
 
-    {/* <div>
-    <h2>How long have you got?</h2>
-    <ul>
-      {times.map((time) => (
-        <li key={time} onClick={() => handleTimeSelect(time)}>
-          {time}
-        </li>
-      ))}
-    </ul>
-    </div>
-      <div>
-        <h2>When was it released?</h2>
-        <ul>
-          {years.map((year) => (
-            <li key={year} onClick={() => handleYearSelect(year)}>
-              {year}
-            </li>
-          ))} */}
-        {/* </ul> */}
-      {/* </div> */}
-    </div>
   );
  }
 export default Home;
