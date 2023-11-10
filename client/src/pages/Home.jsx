@@ -6,8 +6,9 @@ function Home() {
   const [time, setTime] = useState("");
   const [year, setYear] = useState("");
   const [randomMovie, setRandomMovie] = useState(null);
+  const [error, setError] = useState("");
 
-  console.log("test");
+  // console.log("test");
 
 const genres = ['Action', 'Comedy', 'Crime', 'Drama', 'Family', 'Musical', 'Romance', 'Thriller', 'War']; 
 function genreQuestion({ onGenreSelect }) {
@@ -17,7 +18,7 @@ function genreQuestion({ onGenreSelect }) {
   const handleGenreSelect = (event) => {
     event.preventDefault();
 
-    genre = event.target.value;
+    const genre = event.target.value;
     
     setGenre(genre);
     console.log(genre);
@@ -55,31 +56,55 @@ function yearQuestion({ onYearSelect }) {
     getRandomMovie();
   }, []);
   
+  // async function getRandomMovie() {
+  //   try {
+  //  //   const randomMovie = await db("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%" ORDER BY RAND() LIMIT 1;")
+  //     const randomMovie = await fetch(`SELECT * FROM movies WHERE MovieGenre LIKE "%${genre}%" ORDER BY RAND() LIMIT 1;`)
+  //     const displayRandomMovie = randomMovie.data[0]
+  //     return displayRandomMovie
+  //   } catch (err) {
+  //     console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+  //  }
+  // };
+
   async function getRandomMovie() {
     try {
-   //   const randomMovie = await db("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%" ORDER BY RAND() LIMIT 1;")
-      const randomMovie = await db(`SELECT * FROM movies WHERE genre LIKE "%{$genre}%" ORDER BY RAND() LIMIT 1;`)
-      const displayRandomMovie = randomMovie.data[0]
-      return displayRandomMovie
-    } catch (error) {
-      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
-   }
-  };
+      console.log(genre);
+      let response = await fetch(`/api/movies/${genre}`);
+      console.log(response);
+      if (response.ok) {
+          let movieDisplay = await response.json();
+          setRandomMovie(movieDisplay);
+          console.log(movieDisplay);
+      } else {
+          console.log("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+      }
+  } catch (err) {
+      console.log("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+  }
+  }
 
   const handleSubmit = async () => {
     try {
       const result = await getRandomMovie();
-      if (!result.ok) {
+      if (!result) {
         throw new Error ("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
       }
       const data = await result.json();
-      setRandomMovie(movie);
+      setRandomMovie(data);
       // console.log("Genre: ", genre);
       // console.log("Time: ", time);
       // console.log("Year: ", year);
-    } catch (error) {
-      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    }
+    } catch (err) {
+      setError(err)
+      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    
+    }
   };
+
+  //find old handleSubmit function to admit
+  //don't need to fetch 
+  //try to remove lines 89-93
+  
 
 
   return (
@@ -121,12 +146,14 @@ function yearQuestion({ onYearSelect }) {
           Submit
         </button>
       </div>
-      {randomMovie && (
+      {/* i think issue is from here downwards? */}
+      {error}
+      {/* {randomMovie && (
         <div className="centered">
           <h2>Here's your movie!</h2>
           <p>{randomMovie.title}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
