@@ -19,9 +19,6 @@ export default function App() {
         <div>
           <Link to="/movies">All Movies</Link>
         </div>
-        <div>
-        <Link to="/movie">Movie Spotlight</Link>
-        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

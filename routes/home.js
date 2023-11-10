@@ -16,6 +16,3 @@ router.get('/', function(req, res, next) {
 //   .catch(err => res.status(500).send(err));
 // })
 
-//need to convert results into correct values for the select function
-//e.g. '1980s' answer = >= 1980 && >= 1989
-//e.g. 'Up to 90 minutes" <= 90

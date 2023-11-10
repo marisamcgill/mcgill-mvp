@@ -5,6 +5,7 @@ function Home() {
   const [genre, setGenre] = useState("");
   const [time, setTime] = useState("");
   const [year, setYear] = useState("");
+  const [randomMovie, setRandomMovie] = useState(null);
 
   console.log("test");
 
@@ -16,7 +17,7 @@ function genreQuestion({ onGenreSelect }) {
   const handleGenreSelect = (event) => {
     event.preventDefault();
 
-    const genre = event.target.value;
+    genre = event.target.value;
     
     setGenre(genre);
     console.log(genre);
@@ -50,21 +51,35 @@ function yearQuestion({ onYearSelect }) {
    console.log(year);
   };
 
-  const handleSubmit = () => {
-    console.log("Genre: ", genre);
-    console.log("Time: ", time);
-    console.log("Year: ", year);
+  useEffect(() => {
+    getRandomMovie();
+  }, []);
+  
+  async function getRandomMovie() {
+    try {
+   //   const randomMovie = await db("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%" ORDER BY RAND() LIMIT 1;")
+      const randomMovie = await db(`SELECT * FROM movies WHERE genre LIKE "%{$genre}%" ORDER BY RAND() LIMIT 1;`)
+      const displayRandomMovie = randomMovie.data[0]
+      return displayRandomMovie
+    } catch (error) {
+      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+   }
   };
 
-// useEffect(() => {
-//   getRandomMovie();
-// }, []);
-
-// async function getRandomMovie() {
-//   try {
-//     const randomMovie = await debug("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%";")
-//   }
-// };
+  const handleSubmit = async () => {
+    try {
+      const result = await getRandomMovie();
+      if (!result.ok) {
+        throw new Error ("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+      }
+      const data = await result.json();
+      setRandomMovie(movie);
+      // console.log("Genre: ", genre);
+      // console.log("Time: ", time);
+      // console.log("Year: ", year);
+    } catch (error) {
+      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    }
+  };
 
 
   return (
@@ -106,6 +121,12 @@ function yearQuestion({ onYearSelect }) {
           Submit
         </button>
       </div>
+      {randomMovie && (
+        <div className="centered">
+          <h2>Here's your movie!</h2>
+          <p>{randomMovie.title}</p>
+        </div>
+      )}
     </div>
   );
 }

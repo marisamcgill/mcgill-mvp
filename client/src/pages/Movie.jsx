@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+
 export default function Movie() {
   const [movie, setMovie] = useState({});
   const { MovieID } = useParams();
@@ -18,11 +19,13 @@ export default function Movie() {
 
 return (
     <div>
-      <h1>
-      {movie.MovieName} 
-      {/* ({MovieDirector}, {m.MovieYear})
-      {m.MovieGenre}, {m.MovieLength} */}
-      </h1>
+      <h2>
+      <div>Movie Title: {movie.MovieName} </div>
+      <div>Directed By: {movie.MovieDirector} </div>
+      <div>Year of Release: {movie.MovieYear} </div>
+      <div>Genre: {movie.MovieGenre} </div>
+      <div>Runntime {movie.MovieLength} minutes </div>
+      </h2>
     </div>
   );
 }
