@@ -11,15 +11,16 @@ router.get("/", async function(req, res, next) {
   }
 });
 
-router.get("/:id", async function(req, res, next) {
-  const { id } = req.params;
-  try {
-    const results = await db(`select * from movies where id = ${id};`);
-    res.send(results.data[0]);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+
+// router.get("/:id", async function(req, res, next) {
+//   const { id } = req.params;
+//   try {
+//     const results = await db(`select * from movies where id = ${id};`);
+//     res.send(results.data[0]);
+//   } catch (err) {
+//     res.status(500).send(err);
+//   }
+// });
 
 module.exports = router;
 

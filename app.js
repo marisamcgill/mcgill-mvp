@@ -8,6 +8,7 @@ const cors = require('cors');
 const homeRouter = require('./routes/home');
 const resultsRouter = require('./routes/results');
 const moviesRouter = require('./routes/movies');
+const movieRouter = require('./routes/movie');
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.use(cookieParser());
 
 app.use('/api/results', resultsRouter);
 app.use('/api/movies', moviesRouter);
+app.use('/api/movie', movieRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

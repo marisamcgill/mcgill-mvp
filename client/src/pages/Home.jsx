@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import '../App.css';
 
 function Home() {
   const [genre, setGenre] = useState("");
@@ -46,49 +47,69 @@ function yearQuestion({ onYearSelect }) {
     const year = event.target.value;
 
     setYear(year);
-   console.log(years);
+   console.log(year);
   };
 
+  const handleSubmit = () => {
+    console.log("Genre: ", genre);
+    console.log("Time: ", time);
+    console.log("Year: ", year);
+  };
+
+// useEffect(() => {
+//   getRandomMovie();
+// }, []);
+
+// async function getRandomMovie() {
+//   try {
+//     const randomMovie = await debug("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%";")
+//   }
+// };
+
+
   return (
-<div>
-    <div>
-  <label className="col-4">
-      What are you in the mood for?
-      <select className="form-select form-select-md" name='genre' id="selected" onChange={(event) => handleGenreSelect(event)}>
-          {genres.map(genre => (
+    <div className="container">
+      <h1 className="title">Movie Generator</h1>
+
+    <div className="centered">
+        <label className="question">
+          What are you in the mood for?
+          <select className="form-select" name='genre' onChange={handleGenreSelect}>
+            {genres.map(genre => (
               <option key={genre} value={genre}>{genre}</option>
-          ))}
-      </select>
-  </label>
-  </div> 
+            ))}
+          </select>
+        </label> </div>
 
-            <div>
-  <label className="col-4">
-      How long have you got?
-      <select className="form-select form-select-md" name='time' id="selected" onChange={(event) => handleTimeSelect(event)}>
-          {times.map(time => (
+        <div className="centered">
+        <label className="question">
+          How long have you got?
+          <select className="form-select" name='time' onChange={handleTimeSelect}>
+            {times.map(time => (
               <option key={time} value={time}>{time}</option>
-          ))}
-      </select>
-  </label>
-  </div> 
+            ))}
+          </select>
+        </label></div>
 
-  <div>
-  <label className="col-4">
-      When was it released?
-      <select className="form-select form-select-md" name='year' id="selected" onChange={(event) => handleTimeSelect(event)}>
-          {years.map(year => (
+        <div className="centered">
+        <label className="question">
+          When was it released?
+          <select className="form-select" name='year' onChange={handleYearSelect}>
+            {years.map(year => (
               <option key={year} value={year}>{year}</option>
-          ))}
-      </select>
-  </label>
-  </div> 
-
-  </div>
-
-
+            ))}
+          </select>
+        </label></div>
+            
+        <div className="centered">
+        <button className="btn" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
+    </div>
   );
- }
+}
+
 export default Home;
 
 

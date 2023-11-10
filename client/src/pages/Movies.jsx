@@ -31,12 +31,13 @@ export default function App() {
     
 
   return (
-    <div>
-      All Movies
-      <div>
+    <div className="container">
+    <h1 className="title">All Movies</h1>
+<button>test</button>
+      <div  className = "movieList">
         {movies.map((m) => (
-          <div key={m.id}>
-            <Link to={`/movies/${m.id}`}>
+          <div key={m.MovieID}>
+            <Link to={`/movie/${m.MovieID}`}>
               {m.MovieName} ({m.MovieDirector}, {m.MovieYear})
             </Link>
           </div>
