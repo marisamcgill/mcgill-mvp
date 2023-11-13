@@ -117,7 +117,7 @@ function yearQuestion({ onYearSelect }) {
           What are you in the mood for?
           <select className="form-select" name='genre' onChange={handleGenreSelect}>
             {genres.map(genre => (
-              <option key={genre} value={genre}>{genre}</option>
+              <option key={genre} value={genre.value}>{genre.label}</option>
             ))}
           </select>
         </label> </div>
