@@ -26,6 +26,8 @@ function genreQuestion({ onGenreSelect }) {
 
 const times = ['Up to 90 minutes', 'Up to 120 minutes', 'Up to 180 minutes', 'Up to 240 minutes', 'Up to 300 minutes'];
 function timeQuestion({ onTimeSelect }) { 
+  //convert array of str to array of obj
+  //add values and labels 
 
 };
 
@@ -51,6 +53,9 @@ function yearQuestion({ onYearSelect }) {
     setYear(year);
    console.log(year);
   };
+
+  //whre year is > this and less than < +10
+  //or match first 3 characters 
 
   // useEffect(() => {
   //   getRandomMovie();
@@ -133,6 +138,7 @@ function yearQuestion({ onYearSelect }) {
           <select className="form-select" name='time' onChange={handleTimeSelect}>
             {times.map(time => (
               <option key={time} value={time}>{time}</option>
+              //value = time.value
             ))}
           </select>
         </label></div>
