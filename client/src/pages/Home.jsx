@@ -11,6 +11,8 @@ function Home() {
   // console.log("test");
 
 const genres = [
+  { label: 'Select', value: 'null' },
+  { label: 'Action', value: 'Action' },
   { label: 'Comedy', value: 'Comedy' },
   { label: 'Crime', value: 'Crime' },
   { label: 'Drama', value: 'Drama' },
@@ -37,6 +39,7 @@ function genreQuestion({ onGenreSelect }) {
   }
 
 const times = [
+  { label: 'Select', value: 'null' },
   { label: 'Up to 90 minutes', value: '<= 90' },
   { label: 'Up to 120 minutes', value: '<= 120' },
   { label: 'Up to 180 minutes', value: '<= 180' },
@@ -58,6 +61,7 @@ function timeQuestion({ onTimeSelect }) {
   };
 
 const years = [
+  { label: 'Select', value: 'null' },
   { label: '1970s', value: '> 1969 && < 1980' },
   { label: '1980s', value: '> 1979 && < 1990' },
   { label: '1990s', value: '> 1989 && < 2000' },

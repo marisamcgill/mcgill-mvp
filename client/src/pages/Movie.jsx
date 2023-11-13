@@ -25,7 +25,11 @@ return (
       <div>Directed By: {movie.MovieDirector} </div>
       <div>Year of Release: {movie.MovieYear} </div>
       <div>Genre: {movie.MovieGenre} </div>
-      <div>Runntime {movie.MovieLength} minutes </div>
+      <div>Runtime: {movie.MovieLength} minutes </div>
+      <img 
+            src={`/posters/${MovieID}.jpg`} 
+            alt="Movie Poster" 
+            style={{ maxWidth: '250px', height: 'auto' }} />
       </h2>
     </div>
   );
