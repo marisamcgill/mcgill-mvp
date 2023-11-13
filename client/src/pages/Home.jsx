@@ -57,20 +57,6 @@ function yearQuestion({ onYearSelect }) {
   //whre year is > this and less than < +10
   //or match first 3 characters 
 
-  // useEffect(() => {
-  //   getRandomMovie();
-  // }, []);
-  
-  // async function getRandomMovie() {
-  //   try {
-  //  //   const randomMovie = await db("SELECT * FROM movies WHERE genre LIKE "%${genre}%" AND duration LIKE "%${time}%" AND year like "%${year}%" ORDER BY RAND() LIMIT 1;")
-  //     const randomMovie = await fetch(`SELECT * FROM movies WHERE MovieGenre LIKE "%${genre}%" ORDER BY RAND() LIMIT 1;`)
-  //     const displayRandomMovie = randomMovie.data[0]
-  //     return displayRandomMovie
-  //   } catch (err) {
-  //     console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
-  //  }
-  // };
 
   async function getRandomMovie() {
     try {
@@ -89,27 +75,6 @@ function yearQuestion({ onYearSelect }) {
   }
   }
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const result = await getRandomMovie();
-  //     if (!result) {
-  //       throw new Error ("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
-  //     }
-  //     const data = await result.json();
-  //     setRandomMovie(data);
-  //     // console.log("Genre: ", genre);
-  //     // console.log("Time: ", time);
-  //     // console.log("Year: ", year);
-  //   } catch (err) {
-  //     setError(err)
-  //     // console.warn(err);
-  //     console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    
-  //   }
-  // };
-
-  //find old handleSubmit function to admit
-  //don't need to fetch 
-  //try to remove lines 89-93
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -162,7 +127,11 @@ function yearQuestion({ onYearSelect }) {
       {randomMovie && (
         <div className="centered">
           <h2>Here's your movie!</h2>
-          <p>{randomMovie.MovieName}</p>
+          <img 
+            src={`/posters/${randomMovie.MovieID}.jpg`} 
+            alt="Movie Poster" 
+            style={{ maxWidth: '250px', height: 'auto' }} />
+            <h3>{randomMovie.MovieName}</h3>
         </div>
       )}
     </div>
