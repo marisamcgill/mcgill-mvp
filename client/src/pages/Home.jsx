@@ -10,7 +10,19 @@ function Home() {
 
   // console.log("test");
 
-const genres = ['Action', 'Comedy', 'Crime', 'Drama', 'Family', 'Musical', 'Romance', 'Thriller', 'War']; 
+const genres = [
+  { label: 'Comedy', value: 'Comedy' },
+  { label: 'Crime', value: 'Crime' },
+  { label: 'Drama', value: 'Drama' },
+  { label: 'Family', value: 'Family' },
+  { label: 'Musical', value: 'Musical' },
+  { label: 'Romance', value: 'Romance' },
+  { label: 'Science Fiction', value: 'Science Fiction' },
+  { label: 'Thriller', value: 'Thriller' },
+  { label: 'War', value: 'War' },
+];
+
+// ['Action', 'Comedy', 'Crime', 'Drama', 'Family', 'Musical', 'Romance', 'Science Fiction', 'Thriller', 'War']; 
 function genreQuestion({ onGenreSelect }) {
 
   };
@@ -24,11 +36,16 @@ function genreQuestion({ onGenreSelect }) {
     console.log(genre);
   }
 
-const times = ['Up to 90 minutes', 'Up to 120 minutes', 'Up to 180 minutes', 'Up to 240 minutes', 'Up to 300 minutes'];
-function timeQuestion({ onTimeSelect }) { 
-  //convert array of str to array of obj
-  //add values and labels 
+const times = [
+  { label: 'Up to 90 minutes', value: '<= 90' },
+  { label: 'Up to 120 minutes', value: '<= 120' },
+  { label: 'Up to 180 minutes', value: '<= 180' },
+  { label: 'Up to 240 minutes', value: '<= 240' },
+  { label: 'Up to 300 minutes', value: '<= 300' },
+];
 
+// ['Up to 90 minutes', 'Up to 120 minutes', 'Up to 180 minutes', 'Up to 240 minutes', 'Up to 300 minutes'];
+function timeQuestion({ onTimeSelect }) { 
 };
 
   const handleTimeSelect = (event) => {
@@ -40,7 +57,15 @@ function timeQuestion({ onTimeSelect }) {
   console.log(time);    
   };
 
-const years = ['1970s', '1980s', '1990s', '2000s', '2010s']; 
+const years = [
+  { label: '1970s', value: '> 1969 && < 1980' },
+  { label: '1980s', value: '> 1979 && < 1990' },
+  { label: '1990s', value: '> 1989 && < 2000' },
+  { label: '2000s', value: '> 1999 && < 2010' },
+  { label: '2010s', value: '> 2009 && < 2020' },
+];
+
+// ['1970s', '1980s', '1990s', '2000s', '2010s']; 
 function yearQuestion({ onYearSelect }) {
 
 };
@@ -60,18 +85,18 @@ function yearQuestion({ onYearSelect }) {
 
   async function getRandomMovie() {
     try {
-      console.log(genre);
+      // console.log(genre);
       let response = await fetch(`/api/movies/${genre}`);
       // console.log(response);
       if (response.ok) {
           let movieDisplay = await response.json();
           setRandomMovie(movieDisplay[0]);
-          console.log(movieDisplay);
+          // console.log(movieDisplay);
       } else {
-          console.log("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+          setError("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
       }
   } catch (err) {
-      console.log("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+      setError("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
   }
   }
 
@@ -102,8 +127,7 @@ function yearQuestion({ onYearSelect }) {
           How long have you got?
           <select className="form-select" name='time' onChange={handleTimeSelect}>
             {times.map(time => (
-              <option key={time} value={time}>{time}</option>
-              //value = time.value
+              <option key={time} value={time.value}>{time.label}</option>
             ))}
           </select>
         </label></div>
@@ -113,7 +137,7 @@ function yearQuestion({ onYearSelect }) {
           When was it released?
           <select className="form-select" name='year' onChange={handleYearSelect}>
             {years.map(year => (
-              <option key={year} value={year}>{year}</option>
+              <option key={year} value={year.value}>{year.label}</option>
             ))}
           </select>
         </label></div>
@@ -123,7 +147,11 @@ function yearQuestion({ onYearSelect }) {
           Submit
         </button>
       </div>
-      {error}
+      {error && (
+        <div className="errorMessage">
+          {error}
+          </div>
+      )}
       {randomMovie && (
         <div className="centered">
           <h2>Here's your movie!</h2>

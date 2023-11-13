@@ -58,3 +58,7 @@
 .movieList {
   background-color:aquamarine
 }
+
+.errorMessage {
+  color: red;
+}
