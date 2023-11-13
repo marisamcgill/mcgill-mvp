@@ -52,9 +52,9 @@ function yearQuestion({ onYearSelect }) {
    console.log(year);
   };
 
-  useEffect(() => {
-    getRandomMovie();
-  }, []);
+  // useEffect(() => {
+  //   getRandomMovie();
+  // }, []);
   
   // async function getRandomMovie() {
   //   try {
@@ -71,10 +71,10 @@ function yearQuestion({ onYearSelect }) {
     try {
       console.log(genre);
       let response = await fetch(`/api/movies/${genre}`);
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
           let movieDisplay = await response.json();
-          setRandomMovie(movieDisplay);
+          setRandomMovie(movieDisplay[0]);
           console.log(movieDisplay);
       } else {
           console.log("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
@@ -84,26 +84,32 @@ function yearQuestion({ onYearSelect }) {
   }
   }
 
-  const handleSubmit = async () => {
-    try {
-      const result = await getRandomMovie();
-      if (!result) {
-        throw new Error ("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
-      }
-      const data = await result.json();
-      setRandomMovie(data);
-      // console.log("Genre: ", genre);
-      // console.log("Time: ", time);
-      // console.log("Year: ", year);
-    } catch (err) {
-      setError(err)
-      console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    
-    }
-  };
+  // const handleSubmit = async () => {
+  //   try {
+  //     const result = await getRandomMovie();
+  //     if (!result) {
+  //       throw new Error ("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
+  //     }
+  //     const data = await result.json();
+  //     setRandomMovie(data);
+  //     // console.log("Genre: ", genre);
+  //     // console.log("Time: ", time);
+  //     // console.log("Year: ", year);
+  //   } catch (err) {
+  //     setError(err)
+  //     // console.warn(err);
+  //     console.error("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");    
+  //   }
+  // };
 
   //find old handleSubmit function to admit
   //don't need to fetch 
   //try to remove lines 89-93
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getRandomMovie();
+  }
   
 
 
@@ -146,14 +152,13 @@ function yearQuestion({ onYearSelect }) {
           Submit
         </button>
       </div>
-      {/* i think issue is from here downwards? */}
       {error}
-      {/* {randomMovie && (
+      {randomMovie && (
         <div className="centered">
           <h2>Here's your movie!</h2>
-          <p>{randomMovie.title}</p>
+          <p>{randomMovie.MovieName}</p>
         </div>
-      )} */}
+      )}
     </div>
   );
 }

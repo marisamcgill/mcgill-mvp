@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
+import '../App.css';
 
 export default function App() {
   const [movies, setMovies] = useState([]);
