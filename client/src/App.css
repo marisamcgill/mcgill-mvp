@@ -78,6 +78,10 @@
 .titleMovieGenerator {
   font-size: 40px;
   margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
 }
 
 /* 3 questions on movie generator page */
@@ -107,9 +111,9 @@
   align-items: center;
   justify-content: center;
   font-size: 15px;
-  /* padding: 10px 20px;
-  margin-bottom: 10px;
-  margin-top: 10px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 7px 60px;
 }
 
 /* button on movie generator page */
@@ -118,6 +122,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* single button */
@@ -127,12 +134,13 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  margin-bottom: 25px;
 }
 
 /* error message on movie generator page, when no movie found */
 .errorMessage {
   color: red;
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -171,6 +179,7 @@
   text-decoration: none;
   margin-top: 10px;
   margin-bottom: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* list of movies when hovered over */
@@ -190,7 +199,7 @@
   text-decoration: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

@@ -179,6 +179,7 @@ function Home() {
           </select>
         </label>
       </div>
+      <div>
       <div className="buttonSection">
         <button className="button" onClick={handleSubmit}>
           Submit
@@ -186,6 +187,7 @@ function Home() {
         <button className="button" onClick={(handleReset)}>
           Reset
         </button>  
+        </div>
         </div>
       {randomMovie ? (
         <div className="results">
