@@ -60,11 +60,11 @@ function Home() {
 
   const years = [
     { label: "Select", value: null },
-    { label: "1970s", value: "> 1969 && < 1980" },
-    { label: "1980s", value: "> 1979 && < 1990" },
-    { label: "1990s", value: "> 1989 && < 2000" },
-    { label: "2000s", value: "> 1999 && < 2010" },
-    { label: "2010s", value: "> 2009 && < 2020" },
+    { label: "1970s", value: "1970" },
+    { label: "1980s", value: "1980" },
+    { label: "1990s", value: "1990" },
+    { label: "2000s", value: "2000" },
+    { label: "2010s", value: "2010" },
   ];
 
   // ['1970s', '1980s', '1990s', '2000s', '2010s'];
@@ -78,9 +78,6 @@ function Home() {
     setYear(year);
     console.log(year);
   };
-
-  //whre year is > this and less than < +10
-  //or match first 3 characters
 
   const getRandomMovie = async () => {
     try {
@@ -104,7 +101,7 @@ function Home() {
           );
         }
       }
-      // console.log(response);
+
     } catch (err) {
       setError(
         "Uh oh, we weren't able to find a match. Click Movie Generator to try again."
@@ -115,12 +112,20 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    getRandomMovie(time, year);
-    // console.log(genre);
-    // console.log(time, year);
+    getRandomMovie(genre, time, year);
+  };
+
+  const handleReset = () => {
+    setGenre("");
+    setTime("");
+    setYear("");
+    setRandomMovie(null);
+    setError("");
+    setHasSearched(false);
   };
 
   return (
+    <div className="pageContainer">
     <div>
       <h1 className="titleMovieGenerator">Movie Generator</h1>
 
@@ -174,26 +179,31 @@ function Home() {
           </select>
         </label>
       </div>
-
-      <div className="centered">
-        <button className="btn" onClick={handleSubmit}>
-          Next
+      <div>
+        <button className="button" onClick={handleSubmit}>
+          Submit
         </button>
-      </div>
-      {error && <div className="errorMessage">{error}</div>}
+        <button className="button" onClick={(handleReset)}>
+          Reset
+        </button>  
+        </div>
       {randomMovie ? (
         <div className="results">
-          <h2>Here's your movie!</h2>
+          <p>{randomMovie.MovieName}</p>
           <img
             src={`/posters/${randomMovie.MovieID}.jpg`}
             alt="Movie Poster"
             style={{ maxWidth: "250px", height: "auto" }}
           />
-          <h3>{randomMovie.MovieName}</h3>
         </div>
       ) : (
-        hasSearched && "No movie found"
+        hasSearched && (
+          <div className="errorMessage">
+            Uh oh, we weren't able to find a match. Click Movie Generator to try again.
+          </div>
+        )
       )}
+    </div>
     </div>
   );
 }

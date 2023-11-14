@@ -27,10 +27,10 @@ router.get("/random", async function (req, res, next) {
     query += ` AND MovieLength <= ${time}`;
   }
   if (year) {
-    query += ` AND MovieYear >= ${year}`;
+    const endYear = year + 10;
+    query += ` AND MovieYear >= ${year} AND MovieYear < ${endYear}`;
   }
-
-  query += `ORDER BY RAND() LIMIT 1;`;
+  query += ` ORDER BY RAND() LIMIT 1;`;
 
   try {
     let results = await db(query);

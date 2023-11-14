@@ -30,8 +30,8 @@ export default function App() {
   }
 
   return (
-    <div className="container">
-      <h1 className="title">All Movies</h1>
+    <div className="pageContainer">
+      <h1 className="titleAllMovies">All Movies</h1>
       <div className="movieList">
         {movies.map((m) => (
           <div key={m.MovieID}>

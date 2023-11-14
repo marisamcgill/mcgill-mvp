@@ -1,28 +1,11 @@
-.titleMain {
-  font-size: 20px;
+/* whole home.jsx */
+.pageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: black;
-}
-
-/* menu options from app.jsx */
-.menu a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: black;
-}
-
-.menu a:hover {
-  color:dimgray
-}
-
-/* title on movie generator page */
-.titleMovieGenerator {
-  font-size: 75px;
+  min-height: 75vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* various */
@@ -33,53 +16,161 @@
   justify-content: center;
 }
 
-/* 3 questions on movie generartor page */
-.question {
+/* GoodMovies for GoodFellas */
+.titleMain {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+/* Which Robert de Niro movie should you watch? */
+.subheading {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  margin-top: 0;
+}
+
+/* image on homepage / above movie generator */
+.mainImage {
+  align-items: center;
+}
+
+/* menu options from app.jsx */
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  margin-bottom: 0;
+  background-color:gold;
+}
+
+/* all menu options from app.jsx */
+.menu a {
+  color: black;
+  padding: 10px;
+  margin-right: 20px;
+  font-size: 25px;
+}
+
+/* menu when hovered over */
+.menu a:hover {
+  color:dimgray;
+  text-decoration: underline;
+}
+
+/* title on movie generator page */
+.titleMovieGenerator {
+  font-size: 40px;
+  margin-top: 0;
+}
+
+/* 3 questions on movie generator page */
+.question a {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* 3 dropdown boxes on movie generator page */
 .form-select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid;
   border-radius: 5px;
   background-color: #fff;
   font-size: 16px;
-  outline: none;
+  text-align: center;
 }
 
 /* button on movie generator page */
-.btn {
-  background-color: #007bff;
-  color: #fff;
+.button {
+  background-color: gold;
+  color:black;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 15px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* error message on movie generator page, when no movie found */
 .errorMessage {
   color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* movie resuts on movie generator page - text and image */
 .results {
-
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-/* using to test connection */
-.movieList {
-  background-color:aquamarine
+.titleAllMovies {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-
-
-/* unknown items */
-.menuItem {
-  color: #fff;
+/* list on all movies page */
+.movieList a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: black;
   text-decoration: none;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
+
+/* list of movies when hovered over */
+.movieList a:hover {
+  color:dimgray;
+  text-decoration: underline;
+}
+
+/* movie spotlight / info on movie page */
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* poster for movie spotlight / info on movie page */
+.moviePoster {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+

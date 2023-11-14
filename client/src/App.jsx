@@ -11,13 +11,21 @@ export default function App() {
   return (
     <>
       <div className="titleMain">
-        <h1>GoodMovies for GoodFellas</h1>
+        <p>GoodMovies for GoodFellas</p>
+        </div> <div className="subheading">
+        <p>Which Robert de Niro movie should you watch?</p>
       </div>
+      <img
+            src={`/posters/main.png`}
+            alt="De Niro"
+            style={{ maxWidth: "1000px", height: "auto"}}
+            className="mainImage"
+          />
       <nav>
         <div className="menu">
           <div>
-            <Link to="/">Movie Generator </Link>
-            <Link to="/movies"> All Movies</Link>
+            <Link to="/">Movie Generator</Link>
+            <Link to="/movies">All Movies</Link>
           </div>
         </div>
       </nav>
