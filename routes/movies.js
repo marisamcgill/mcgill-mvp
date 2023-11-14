@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../model/helper");
 
-// movies?genre=action&time=120&year=2010
 
+//get all moves 
 router.get("/", async function (req, res, next) {
   try {
     const results = await db(`SELECT * FROM movies`);
@@ -13,6 +13,10 @@ router.get("/", async function (req, res, next) {
   }
 });
 
+//get random movie
+//if genre, time, and/or year have a value then add to the url
+//and add to query to get from api 
+//put results in random order, limit to 1 so only 1 is presented
 router.get("/random", async function (req, res, next) {
   let { genre, time, year } = req.query;
 

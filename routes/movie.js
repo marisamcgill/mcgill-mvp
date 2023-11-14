@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require("../model/helper");
 
+// get movie based on movie id
 router.get("/:id", async function(req, res, next) {
   const { id } = req.params;
   console.log(id);
