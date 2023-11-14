@@ -16,6 +16,7 @@ export default function App() {
     getMovies();
   }, []);
 
+  //fetch all movies from the api / movies table
   async function getMovies() {
     try {
       const response = await fetch("/api/movies");

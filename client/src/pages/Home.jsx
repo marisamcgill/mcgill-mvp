@@ -11,6 +11,9 @@ function Home() {
 
   // console.log("test");
 
+  //options for genre, time, year questions
+  //label as appears on front end
+  //value as sent to the back end 
   const genres = [
     { label: "Select", value: "null" },
     { label: "Action", value: "Action" },
@@ -28,11 +31,14 @@ function Home() {
   // ['Action', 'Comedy', 'Crime', 'Drama', 'Family', 'Musical', 'Romance', 'Science Fiction', 'Thriller', 'War'];
   function genreQuestion({ onGenreSelect }) {}
 
+  //event handler functions to select and set genre, time, year answers
   const handleGenreSelect = (event) => {
     event.preventDefault();
 
+    //assign event target / the option clicked
     const genre = event.target.value;
 
+    //set this as the genre, time, year etc 
     setGenre(genre);
     console.log(genre);
   };
@@ -79,18 +85,24 @@ function Home() {
     console.log(year);
   };
 
+  //function to get random movie suggestion based on the question inputs 
   const getRandomMovie = async () => {
     try {
       console.log(genre);
-      console.log(time, year);
+      console.log(time);
+      console.log(year);
+      //fetch from api if any of the 3 questions have been answered
+      //if not questions answered / no input then the function won't work
       if (genre || time || year) {
         let response = await fetch(
           `/api/movies/random?genre=${genre}&time=${time}&year=${year}`
         );
         if (response.ok) {
+          //update based on api response / random movie 
           let movieDisplay = await response.json();
+          //set random movie with the first object
           setRandomMovie(movieDisplay[0]);
-          // console.log(movieDisplay);
+          //set to true so error message can display if needed 
           setHasSearched(true);
           setGenre("");
           setTime("");
@@ -109,12 +121,16 @@ function Home() {
     }
   };
 
+  //submit function to call on getRandomMovie function
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.value);
     getRandomMovie(genre, time, year);
   };
 
+  //function to reset values / remove movie suggestion
+  //this doesn't reset the actual inputs and they stay on what was selected
+  //how to reset these to default?
   const handleReset = () => {
     setGenre("");
     setTime("");
@@ -137,13 +153,14 @@ function Home() {
             name="genre"
             onChange={handleGenreSelect}
           >
+            {/* map through different options, display .label in the form-select */}
             {genres.map((genre) => (
               <option key={genre.value} value={genre.value}>
                 {genre.label}
               </option>
             ))}
           </select>
-        </label>{" "}
+        </label>
       </div>
 
       <div className="centered">
@@ -189,6 +206,7 @@ function Home() {
         </button>  
         </div>
         </div>
+        {/* display movie from getRandomMovie if one was successfully found */}
       {randomMovie ? (
         <div className="results">
           <p>{randomMovie.MovieName}</p>
@@ -198,6 +216,7 @@ function Home() {
             style={{ maxWidth: "250px", height: "auto" }}
           />
         </div>
+        // display error message if no movie is found and hasSearched is set to true
       ) : (
         hasSearched && (
           <div className="errorMessage">

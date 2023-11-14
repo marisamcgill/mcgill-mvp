@@ -12,6 +12,7 @@ export default function Movie() {
     getMovie();
   }, [MovieID]);
 
+  //fetch move using movieID from the api / movies table 
   async function getMovie() {
     const response = await fetch(`/api/movie/${MovieID}`);
     const data = await response.json();
@@ -34,6 +35,7 @@ return (
                 style={{ maxWidth: '250px', height: 'auto' }} />
         </div>
       </div>
+      {/* back to all movies page */}
       <div className="buttonSection" id="singleButton">
         <button className="button" onClick={() => navigate(-1)}>
           Back
