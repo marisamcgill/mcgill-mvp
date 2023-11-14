@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../model/helper");
 
-
+// movies?genre=action&time=120&year=2010
 //get all moves 
 router.get("/", async function (req, res, next) {
   try {

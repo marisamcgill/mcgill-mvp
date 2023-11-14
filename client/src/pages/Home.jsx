@@ -160,7 +160,7 @@ function Home() {
               </option>
             ))}
           </select>
-        </label>
+        </label>{" "}
       </div>
 
       <div className="centered">
