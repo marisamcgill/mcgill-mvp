@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import '../App.css';
+import "../App.css";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -16,28 +16,26 @@ export default function App() {
     getMovies();
   }, []);
 
-
-    async function getMovies() {
-      try {
-        const response = await fetch("/api/movies");
-        if (!response.ok) {
-          throw new Error("Oops, something went wrong");
-        }
-        const data = await response.json();
-        setMovies(data);
-      } catch (error) {
-        console.error("Oops, something went wrong");
+  async function getMovies() {
+    try {
+      const response = await fetch("/api/movies");
+      if (!response.ok) {
+        throw new Error("Oops, something went wrong");
       }
+      const data = await response.json();
+      setMovies(data);
+    } catch (error) {
+      console.error("Oops, something went wrong");
     }
-    
+  }
 
   return (
     <div className="container">
-    <h1 className="title">All Movies</h1>
-      <div  className = "movieList">
+      <h1 className="title">All Movies</h1>
+      <div className="movieList">
         {movies.map((m) => (
           <div key={m.MovieID}>
-            <Link to={`/movie/${m.MovieID}`}>
+            <Link to={`/movies/${m.MovieID}`}>
               {m.MovieName} ({m.MovieDirector}, {m.MovieYear})
             </Link>
           </div>
