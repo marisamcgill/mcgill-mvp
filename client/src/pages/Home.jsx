@@ -87,18 +87,25 @@ function yearQuestion({ onYearSelect }) {
   //or match first 3 characters 
 
 
-  async function getRandomMovie() {
+  const getRandomMovie = async () => {
     try {
-      // console.log(genre);
-      let response = await fetch(`/api/movies/${genre}`);
-      // console.log(response);
-      if (response.ok) {
+      console.log(genre);
+      console.log(time, year);
+      if (genre || time || year) {
+        let response = await fetch(`/api/movies/${genre}`); 
+        if (response.ok) {
           let movieDisplay = await response.json();
           setRandomMovie(movieDisplay[0]);
           // console.log(movieDisplay);
+          setGenre("");
+          setTime("");
+          setYear("");
       } else {
           setError("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
       }
+      }
+      // console.log(response);
+      
   } catch (err) {
       setError("Uh oh, we weren't able to find a match. Click Movie Generator to try again.");
   }
@@ -107,21 +114,24 @@ function yearQuestion({ onYearSelect }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getRandomMovie();
+    console.log(e.target.value);
+    getRandomMovie(time, year);
+    // console.log(genre);
+    // console.log(time, year);
   }
   
 
 
   return (
-    <div className="container">
-      <h1 className="title">Movie Generator</h1>
+    <div>
+      <h1 className="titleMovieGenerator">Movie Generator</h1>
 
     <div className="centered">
-        <label className="question">
+        <label className="questions">
           What are you in the mood for?
           <select className="form-select" name='genre' onChange={handleGenreSelect}>
             {genres.map(genre => (
-              <option key={genre} value={genre.value}>{genre.label}</option>
+              <option key={genre.value} value={genre.value}>{genre.label}</option>
             ))}
           </select>
         </label> </div>
@@ -131,7 +141,7 @@ function yearQuestion({ onYearSelect }) {
           How long have you got?
           <select className="form-select" name='time' onChange={handleTimeSelect}>
             {times.map(time => (
-              <option key={time} value={time.value}>{time.label}</option>
+              <option key={time.value} value={time.value}>{time.label}</option>
             ))}
           </select>
         </label></div>
@@ -141,14 +151,14 @@ function yearQuestion({ onYearSelect }) {
           When was it released?
           <select className="form-select" name='year' onChange={handleYearSelect}>
             {years.map(year => (
-              <option key={year} value={year.value}>{year.label}</option>
+              <option key={year.value} value={year.value}>{year.label}</option>
             ))}
           </select>
         </label></div>
             
         <div className="centered">
         <button className="btn" onClick={handleSubmit}>
-          Submit
+          Next
         </button>
       </div>
       {error && (
@@ -157,7 +167,7 @@ function yearQuestion({ onYearSelect }) {
           </div>
       )}
       {randomMovie && (
-        <div className="centered">
+        <div className="results">
           <h2>Here's your movie!</h2>
           <img 
             src={`/posters/${randomMovie.MovieID}.jpg`} 

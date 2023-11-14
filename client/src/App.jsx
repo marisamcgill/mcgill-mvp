@@ -12,16 +12,15 @@ export default function App() {
  
   return (
     <>
-    <div className="mainTitle">
-      Which Robert De Niro Movie?
+    <div className="titleMain">
+      <h1>GoodMovies for GoodFellas</h1>
+      
       </div>
       <nav>
         <div className="menu">
         <div>
-          <Link to="/">Movie Generator</Link>
-        </div>
-        <div>
-          <Link to="/movies">All Movies</Link>
+          <Link to="/">Movie Generator </Link>
+          <Link to="/movies"> All Movies</Link>
         </div>
         </div>
       </nav>

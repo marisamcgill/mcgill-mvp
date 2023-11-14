@@ -1,24 +1,31 @@
-.container {
-  text-align: center;
-  background-color: #f0f0f0;
-  padding: 20px;
+.titleMain {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
 }
 
-.title {
+/* menu options from app.jsx */
+.menu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.menu a:hover {
+  color:dimgray
+}
+
+/* title on movie generator page */
+.titleMovieGenerator {
   font-size: 75px;
 }
 
-.menu {
-  background-color: #333;
-  padding: 10px;
-}
-
-.menuItem {
-  color: #fff;
-  text-decoration: none;
-  margin: 10px;
-}
-
+/* various */
 .centered {
   display: flex;
   flex-direction: column;
@@ -26,11 +33,13 @@
   justify-content: center;
 }
 
+/* 3 questions on movie generartor page */
 .question {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
+/* 3 dropdown boxes on movie generator page */
 .form-select {
   width: 100%;
   padding: 10px;
@@ -41,6 +50,7 @@
   outline: none;
 }
 
+/* button on movie generator page */
 .btn {
   background-color: #007bff;
   color: #fff;
@@ -50,8 +60,14 @@
   cursor: pointer;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+/* error message on movie generator page, when no movie found */
+.errorMessage {
+  color: red;
+}
+
+/* movie resuts on movie generator page - text and image */
+.results {
+
 }
 
 /* using to test connection */
@@ -59,6 +75,11 @@
   background-color:aquamarine
 }
 
-.errorMessage {
-  color: red;
+
+
+/* unknown items */
+.menuItem {
+  color: #fff;
+  text-decoration: none;
+  margin: 10px;
 }

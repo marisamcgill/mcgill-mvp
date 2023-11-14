@@ -11,20 +11,13 @@ router.get("/", async function(req, res, next) {
   }
 });
 
-/* GET random movie by genre */
-// router.get("/:genre", function (req, res, next) {
-//   const { genre } = req.params.genre;
-//   db(`SELECT * FROM movies WHERE MovieGenre LIKE "%${genre}%" ORDER BY RAND() LIMIT 1;`)
-//   .then(results => {
-//     res.send(results.data[0]);
-//   })
-//   .catch(err => res.status(500).send(err));
-// })
 
 router.get("/:genre", async function(req, res, next) {
   let genre = req.params.genre;
-  console.log(genre);
+  let { time, year } = req.body;
   let sql = `SELECT * FROM movies WHERE MovieGenre LIKE "%${genre}%" ORDER BY RAND() LIMIT 1;`
+
+  // let sql = `SELECT * FROM movies WHERE MovieGenre LIKE "%${genre}%" AND MovieLength LIKE "%${time}%" AND MovieYear LIKE "%${year}%" ORDER BY RAND() LIMIT 1;`
  
    try {
      let results = await db(sql);
