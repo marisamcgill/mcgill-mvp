@@ -20,21 +20,25 @@ export default function Movie() {
   let navigate = useNavigate();
 
 return (
-    <div className="movieInfo">
-      <div>Movie Title: {movie.MovieName} </div>
-      <div>Directed By: {movie.MovieDirector} </div>
-      <div>Year of Release: {movie.MovieYear} </div>
-      <div>Genre: {movie.MovieGenre} </div>
-      <div>Runtime: {movie.MovieLength} minutes </div>
-      <div className="moviePoster">
-      <img 
-            src={`/posters/${MovieID}.jpg`} 
-            alt="Movie Poster" 
-            style={{ maxWidth: '250px', height: 'auto' }} />
-            </div>
-            <button className="button" onClick={() => navigate(-1)}>
-              Back
-            </button>
+    <div>
+      <div className="movieInfo"> 
+        <div>Movie Title: {movie.MovieName} </div>
+        <div>Directed By: {movie.MovieDirector} </div>
+        <div>Year of Release: {movie.MovieYear} </div>
+        <div>Genre: {movie.MovieGenre} </div>
+        <div>Runtime: {movie.MovieLength} minutes </div>
+        <div className="moviePoster">
+          <img 
+                src={`/posters/${MovieID}.jpg`} 
+                alt="Movie Poster" 
+                style={{ maxWidth: '250px', height: 'auto' }} />
+        </div>
+      </div>
+      <div className="buttonSection" id="singleButton">
+        <button className="button" onClick={() => navigate(-1)}>
+          Back
+        </button>
+      </div>
     </div>
   );
 }

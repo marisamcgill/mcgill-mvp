@@ -11,9 +11,9 @@ export default function App() {
   return (
     <>
       <div className="titleMain">
-        <p>GoodMovies for GoodFellas</p>
+        <h1>GoodMovies for GoodFellas</h1>
         </div> <div className="subheading">
-        <p>Which Robert de Niro movie should you watch?</p>
+        <h4>Which Robert de Niro movie should you watch?</h4>
       </div>
       <img
             src={`/posters/main.png`}

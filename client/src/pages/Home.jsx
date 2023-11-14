@@ -147,7 +147,7 @@ function Home() {
       </div>
 
       <div className="centered">
-        <label className="question">
+        <label className="questions">
           How long have you got?
           <select
             className="form-select"
@@ -164,7 +164,7 @@ function Home() {
       </div>
 
       <div className="centered">
-        <label className="question">
+        <label className="questions">
           When was it released?
           <select
             className="form-select"
@@ -179,7 +179,7 @@ function Home() {
           </select>
         </label>
       </div>
-      <div>
+      <div className="buttonSection">
         <button className="button" onClick={handleSubmit}>
           Submit
         </button>
@@ -199,7 +199,7 @@ function Home() {
       ) : (
         hasSearched && (
           <div className="errorMessage">
-            Uh oh, we weren't able to find a match. Click Movie Generator to try again.
+            Uh oh, we weren't able to find a match. Click Reset to try again.
           </div>
         )
       )}
