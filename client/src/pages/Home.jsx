@@ -123,8 +123,6 @@ function Home() {
   };
 
   //function to reset values / remove movie suggestion
-  //this doesn't reset the actual inputs and they stay on what was selected
-  //how to reset these to default?
   const handleReset = () => {
     setGenre("");
     setTime("");
