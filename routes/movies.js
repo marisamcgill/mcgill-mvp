@@ -31,11 +31,11 @@ router.get("/random", async function (req, res, next) {
     query += ` AND MovieLength <= ${time}`;
   }
   if (year) {
-    const endYear = year + 10;
+    const endYear = +year + 10;
     query += ` AND MovieYear >= ${year} AND MovieYear < ${endYear}`;
   }
   query += ` ORDER BY RAND() LIMIT 1;`;
-
+console.log(query);
   try {
     let results = await db(query);
     let genre = results.data;

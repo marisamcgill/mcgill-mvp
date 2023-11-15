@@ -33,7 +33,6 @@ function Home() {
 
   //event handler functions to select and set genre, time, year answers
   const handleGenreSelect = (event) => {
-    event.preventDefault();
 
     //assign event target / the option clicked
     const genre = event.target.value;
@@ -56,7 +55,6 @@ function Home() {
   function timeQuestion({ onTimeSelect }) {}
 
   const handleTimeSelect = (event) => {
-    event.preventDefault();
 
     const time = event.target.value;
 
@@ -77,7 +75,6 @@ function Home() {
   function yearQuestion({ onYearSelect }) {}
 
   const handleYearSelect = (event) => {
-    event.preventDefault();
 
     const year = event.target.value;
 
@@ -104,9 +101,6 @@ function Home() {
           setRandomMovie(movieDisplay[0]);
           //set to true so error message can display if needed 
           setHasSearched(true);
-          setGenre("");
-          setTime("");
-          setYear("");
         } else {
           setError(
             "Uh oh, we weren't able to find a match. Click Movie Generator to try again."
@@ -152,6 +146,7 @@ function Home() {
             className="form-select"
             name="genre"
             onChange={handleGenreSelect}
+            value={genre}
           >
             {/* map through different options, display .label in the form-select */}
             {genres.map((genre) => (
@@ -170,6 +165,7 @@ function Home() {
             className="form-select"
             name="time"
             onChange={handleTimeSelect}
+            value={time}
           >
             {times.map((time) => (
               <option key={time.value} value={time.value}>
@@ -187,6 +183,7 @@ function Home() {
             className="form-select"
             name="year"
             onChange={handleYearSelect}
+            value={year}
           >
             {years.map((year) => (
               <option key={year.value} value={year.value}>
